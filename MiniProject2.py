@@ -119,9 +119,49 @@ def addContact(email):
 
     pass
 
-def editContact():
+def editContact(name):
     global contacts
-    pass
+    foundContact = False
+    for contact, info in contacts.items():
+        for entry, value in info.items():
+            if value.lower() == name.lower():
+                editContact = contact
+                foundContact = True
+                break
+        # print(f"removing {contacts[delContact]}")
+        # del contacts[delContact]
+    if foundContact:
+        print(f"\nOk, what information would you like to change about {editContact}?")
+        changeCategory = input("Please enter: email, name, address, phone - or leave blank to return to menu\n").strip()
+        if changeCategory:
+            
+            if changeCategory == "name":
+                newName = input("\nWhat would you like to change the name to?\n").strip()
+                contacts[editContact]["name"] = newName
+                print(f"succesfully change the name of {editContact} to {newName}")
+                
+
+            elif changeCategory == "email":
+                newEmail = input("\nWhat would you like to change the email to?\n").strip()
+                contacts[newEmail] = contacts[editContact]
+                print(f"succesfully change the email of {editContact} to {newEmail}")
+                del contacts[editContact]
+                
+
+            elif changeCategory == "address":
+                newAddress = input("\nWhat would you like to change the address to?\n").strip()
+                contacts[editContact]["address"] = newAddress
+                print(f"succesfully change the address of {editContact} to {newAddress}")
+
+            elif changeCategory == "phone":
+                newPhone = input("\nWhat would you like to change the phone number to?\n").strip()
+                contacts[editContact]["phone"] = newPhone
+                print(f"succesfully change the phone number of {editContact} to {newPhone}")
+
+            else:
+                print("Please make sure you make a valid selection from the menu!")
+    else:
+        print(f"Sorry, I couldn't find a contact named '{name}'")
 
 def delContact(name):
     global contacts
@@ -132,6 +172,7 @@ def delContact(name):
                 delContact = contact
                 foundContact = True
                 break
+    if foundContact:
         print(f"removing {contacts[delContact]}")
         del contacts[delContact]
     else:
@@ -148,10 +189,9 @@ def searchContact(name):
                 break
     if bool(RetrieveContact) == True:
         print(f"found '{name}':")
+        print(f"  - {RetrieveContact}")
         for key, value in contacts[RetrieveContact].items():
             print(f"  - {value}")
-            
-        
     else:
         print(f"Sorry, I couldn't find a contact named '{name}'")
 
@@ -201,7 +241,10 @@ def main():
                     
                 if commandStr == "2":
                     #2. Edit an existing contact
-                    print("You selected 2!")
+                    print("\nOk, lets delete a contact")
+                    name = input("Enter the name of the contact you'd like to edit:\n").strip()
+                    editContact(name)
+
                 if commandStr == "3":
                     #3. Delete a contact
                     print("\nOk, lets delete a contact")
