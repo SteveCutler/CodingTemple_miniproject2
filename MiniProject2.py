@@ -90,6 +90,8 @@
 
 import re
 import os
+import json
+
 print("\nWelcome to the Contact Management System!")
 
 contacts = {
@@ -154,6 +156,7 @@ def searchContact(name):
         print(f"Sorry, I couldn't find a contact named '{name}'")
 
 def dispContacts():
+    print(f"\nHere are all your contacts:\n")
     for contact, info in contacts.items():
         print(f"{contact}:")
         for name, value in info.items():
@@ -161,11 +164,21 @@ def dispContacts():
             
 
 def exportContact():
-    pass
-
+    print("Ok! Exporting your contacts to file...\n")
+    with open("Files/Output/ContactsExports.txt", "w") as file:
+        json.dump(contacts, file, indent=4)
+        
+        
 def importContact():
     global contacts
-    pass
+    print("Ok! Importing contacts from file...\n")
+    with open('Files/Input/contactsImport.txt', 'r') as file:
+        newContacts = json.load(file)
+        contacts.update(newContacts)
+    print("\nHere is your updated Contact List:\n")
+    dispContacts()
+
+
 
 def main():
     while True:
@@ -204,12 +217,15 @@ def main():
                 if commandStr == "5":
                     #5. Display all contacts
                     dispContacts()
+
                 if commandStr == "6":
                     #6. Export contacts to a text file
-                    print("You selected 6!")
+                    exportContact()
+                    
                 if commandStr == "7":
                     #7. Import contacts from a text file
-                    print("You selected 7!")
+                    importContact()
+                    
                 if commandStr == "8":
                     #8. Quit
                     print("\nYou selected 8!")
@@ -218,9 +234,9 @@ def main():
             else:
                 print("Make sure you enter a number between 1 and 8!")
 
-# main()
-searchContact("Jane Mansfield")
-
+main()
+#importContact()
+#dispContacts()
 #         1. Add a new contact
 #         2. Edit an existing contact
 #         3. Delete a contact

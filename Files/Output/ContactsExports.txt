@@ -1,0 +1,17 @@
+{
+    "janemansfield@gmail.com": {
+        "name": "Jane Mansfield",
+        "phone": "123-543-6432",
+        "address": "34 Urban Parkway"
+    },
+    "bobdingle@hotmail.com": {
+        "name": "Bob Dingle",
+        "phone": "904-123-6516",
+        "address": "99 Street Avenue"
+    },
+    "guyFieri@aol.ca": {
+        "name": "Guy Fieri",
+        "phone": "934-654-1253",
+        "address": "100 Diner Street"
+    }
+}

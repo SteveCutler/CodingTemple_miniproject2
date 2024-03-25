@@ -1,0 +1,17 @@
+{
+    "DonJuan@gmail.com": {
+        "name": "Don Juan",
+        "phone": "333-532-4126",
+        "address": "21 Extra Street"
+    },
+    "TerrenceMalick69@hotmail.com": {
+        "name": "Terrence Malick",
+        "phone": "12-654-7245",
+        "address": "90 Days Road"
+    },
+    "DonMcdonald@altavista.org": {
+        "name": "Don McDonald",
+        "phone": "232-654-1235",
+        "address": "100 Answer Ave"
+    }
+}
