@@ -103,12 +103,10 @@ contacts = {
 def addContact(email):
     global contacts
     print("Ok, lets add a new contact for you!")
+
     name = input("\nWhat's your contacts name?\n").strip()
-    #format name correctly, lower() and then capitalize first letters, make sure is string
     phone= input("\nWhat's your contacts phone number?\n").strip()
-    #check to make sure all digits and 10 digits long
     address= input("\nWhat's your contact's address?\n").strip()
-    #check to make sure contains numbers and letters but is a string
     if email not in contacts:
         contacts[email] = {"name": name, "phone": phone, "address": address}
     else:
@@ -117,37 +115,32 @@ def addContact(email):
     print(f"Awesome! Your new contact '{contacts[email]}' has been added!\n")
     dispContacts()
 
-    pass
 
 def editContact(name):
     global contacts
     foundContact = False
+
     for contact, info in contacts.items():
         for entry, value in info.items():
             if value.lower() == name.lower():
                 editContact = contact
                 foundContact = True
                 break
-        # print(f"removing {contacts[delContact]}")
-        # del contacts[delContact]
     if foundContact:
         print(f"\nOk, what information would you like to change about {editContact}?")
         changeCategory = input("Please enter: email, name, address, phone - or leave blank to return to menu\n").strip()
-        if changeCategory:
-            
+        if changeCategory:        
             if changeCategory == "name":
                 newName = input("\nWhat would you like to change the name to?\n").strip()
                 contacts[editContact]["name"] = newName
                 print(f"succesfully change the name of {editContact} to {newName}")
                 
-
             elif changeCategory == "email":
                 newEmail = input("\nWhat would you like to change the email to?\n").strip()
                 contacts[newEmail] = contacts[editContact]
                 print(f"succesfully change the email of {editContact} to {newEmail}")
                 del contacts[editContact]
                 
-
             elif changeCategory == "address":
                 newAddress = input("\nWhat would you like to change the address to?\n").strip()
                 contacts[editContact]["address"] = newAddress
@@ -166,6 +159,7 @@ def editContact(name):
 def delContact(name):
     global contacts
     foundContact = False
+
     for contact, info in contacts.items():
         for entry, value in info.items():
             if value.lower() == name.lower():
@@ -179,13 +173,12 @@ def delContact(name):
         print(f"Sorry, I couldn't find a contact named '{name}'")
     
 def searchContact(name):
-    
     RetrieveContact = ""
+
     for contact, info in contacts.items():
         for entry, value in info.items():
             if value.lower() == name.lower():
-                RetrieveContact = contact
-                
+                RetrieveContact = contact 
                 break
     if bool(RetrieveContact) == True:
         print(f"found '{name}':")
@@ -197,6 +190,7 @@ def searchContact(name):
 
 def dispContacts():
     print(f"\nHere are all your contacts:\n")
+
     for contact, info in contacts.items():
         print(f"{contact}:")
         for name, value in info.items():
@@ -232,11 +226,11 @@ def main():
             if command > 0 and command <= 8:
                 commandStr = str(command)
                
-
                 if commandStr == "1":
                     #1. Add a contact
                     print("Ok lets add a new contact to your contacts list!")
                     email = input("What's your new contact's email address?").strip()
+                    
                     addContact(email)
                     
                 if commandStr == "2":
@@ -278,33 +272,3 @@ def main():
                 print("Make sure you enter a number between 1 and 8!")
 
 main()
-#importContact()
-#dispContacts()
-#         1. Add a new contact
-#         2. Edit an existing contact
-#         3. Delete a contact
-#         4. Search for a contact
-#         5. Display all contacts
-#         6. Export contacts to a text file
-#         7. Import contacts from a text file
-#         8. Quit
-
-#     Contact Data Storage:
-#         Use nested dictionaries as the main data structure for storing contact information.
-#         Each contact should have a unique identifier (e.g., a phone number or email address) as the outer dictionary key.
-#         Store contact details within the inner dictionary, including:
-#             Name
-#             Phone number
-#             Email address
-#             Additional information (e.g., address, notes).
-    
-#     Error Handling:
-#         Apply error handling using try, except, else, and finally blocks to manage 
-#         unexpected issues that may arise during execution.
-    
-#     Optional Bonus Points
-#         Contact Categories (Bonus): Implement the ability to categorize contacts into groups (e.g., friends, family, work). Each contact can belong to one or more categories.
-#         Contact Search (Bonus): Enhance the contact search functionality to allow users to search for contacts by name, phone number, email address, or additional information.
-#         Contact Sorting (Bonus): Implement sorting options to display contacts alphabetically by name or based on other criteria.
-#         Backup and Restore (Bonus): Add features to create automatic backups of contact data and the ability to restore data from a backup file.
-#         Custom Contact Fields (Bonus): Allow users to define custom fields for contacts (e.g., birthdays, anniversaries) and store this information.
